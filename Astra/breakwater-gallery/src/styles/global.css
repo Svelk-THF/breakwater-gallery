@@ -404,3 +404,7 @@ dd {
 .pd-bl-med{
   padding-block: var(--space-m);
 }
+
+.decorative-swish{
+  padding-block: var(--space-m);
+}

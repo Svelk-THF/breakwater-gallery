@@ -3,6 +3,8 @@
 // A simple accessible tab group — "For supporters" / "For artists".
 // Content is placeholder for now; swap the two <div class="tabs__panel">
 // blocks for real content later, no structural changes needed.
+
+import PricingCard from "./PricingCard.astro";
 ---
 
 <div class="tabs">
@@ -40,13 +42,12 @@
       <div class="grid-content">
         <h3>Sponsor a block</h3>
         <p>
-          Sponsoring a block costs $2,500. Of that, $1,500 goes directly to the
+          Sponsoring a block costs <span style="font-weight: 600;">$2,500</span>. Of that, $1,500 goes directly to the
           artist commissioned to create the work, and $1,000 is donated to the
-          Taranaki Health Foundation for local healthcare projects. A discounted
-          rate is available for sponsors purchasing five or more blocks — [get
-          in touch] for pricing.
+          Taranaki Health Foundation for local healthcare projects. Discounted
+          rates are available for multiple block purchases.
         </p>
-        <img src="/src/images/breakwater.jpg" alt="" class="pd-bl-med" />
+        <PricingCard />
         <p>
           As a sponsor, you'll be able to choose which artist you'd like to work
           with from those registered with the Gallery. You won't have final say
