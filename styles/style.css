@@ -1,0 +1,427 @@
+:root {
+  /* Font sizes */
+  /*NOTE: Step -2: 11.1111px → 11.52px */
+  --font-size--2: clamp(0.6944rem, 0.687rem + 0.0426vw, 0.72rem);
+  /* Step -1: 13.3333px → 14.4px */
+  --font-size--1: clamp(0.8333rem, 0.8139rem + 0.1111vw, 0.9rem);
+  /* Step 0: 16px → 18px */
+  --font-size-0: clamp(1rem, 0.9635rem + 0.2083vw, 1.125rem);
+  /* Step 1: 19.2px → 22.5px */
+  --font-size-1: clamp(1.2rem, 1.1398rem + 0.3438vw, 1.4063rem);
+  /* Step 2: 23.04px → 28.125px */
+  --font-size-2: clamp(1.44rem, 1.3473rem + 0.5297vw, 1.7578rem);
+  /* Step 3: 27.648px → 35.1563px */
+  --font-size-3: clamp(1.728rem, 1.5911rem + 0.7821vw, 2.1973rem);
+  /* Step 4: 33.1776px → 43.9453px */
+  --font-size-4: clamp(2.0736rem, 1.8773rem + 1.1216vw, 2.7466rem);
+  /* Step 5: 39.8131px → 54.9316px */
+  --font-size-5: clamp(2.4883rem, 2.2127rem + 1.5748vw, 3.4332rem);
+
+  --primary-font: "Proxima Nova", sans-serif;
+
+  /* colours */
+  --primary-dark-blue: oklch(27.652% 0.02484 251.172); /*#1f2934*/
+  --primary-mid-blue: oklch(56.66% 0.04166 224.955); /*#5c7c89*/
+  --primary-light-blue: oklch(82.592% 0.03885 224.467); /*#acccd9*/
+  --primary-light-gold: oklch(93.468% 0.02495 89.214); /*#f0e9d7*/
+  --primary-mid-gold: oklch(75.495% 0.04663 75.802); /*#c1ac8f*/
+
+  /* Spacing */
+  /* Space 3xs: 4px → 5px */
+  --space-3xs: clamp(0.25rem, 0.2318rem + 0.1042vw, 0.3125rem);
+  /* Space 2xs: 8px → 9px */
+  --space-2xs: clamp(0.5rem, 0.4818rem + 0.1042vw, 0.5625rem);
+  /* Space xs: 12px → 14px */
+  --space-xs: clamp(0.75rem, 0.7135rem + 0.2083vw, 0.875rem);
+  /* Space s: 16px → 18px */
+  --space-s: clamp(1rem, 0.9635rem + 0.2083vw, 1.125rem);
+  /* Space m: 24px → 27px */
+  --space-m: clamp(1.5rem, 1.4453rem + 0.3125vw, 1.6875rem);
+  /* Space l: 32px → 36px */
+  --space-l: clamp(2rem, 1.9271rem + 0.4167vw, 2.25rem);
+  /* Space xl: 48px → 54px */
+  --space-xl: clamp(3rem, 2.8906rem + 0.625vw, 3.375rem);
+  /* Space 2xl: 64px → 72px */
+  --space-2xl: clamp(4rem, 3.8542rem + 0.8333vw, 4.5rem);
+  /* Space 3xl: 96px → 108px */
+  --space-3xl: clamp(6rem, 5.7813rem + 1.25vw, 6.75rem);
+}
+
+/*MARK: CSS RESET */
+
+/* Use a sensible box model everywhere */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove default margins */
+* {
+  margin: 0;
+}
+
+/* Text wrapping + trimming */
+html {
+  text-wrap: pretty;
+  text-box-trim: trim-both;
+  overflow-wrap: break-word;
+  font-family: var(--primary-font);
+  font-weight: 300;
+  color: var(--primary-dark-blue);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  text-wrap: balance;
+  margin-block: var(--space-s);
+}
+
+/* Core body defaults */
+body {
+  min-height: 100vh;
+  min-height: 100dvh;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Give form controls inherited typography */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+/*Avoid text overflows on elements with a hard-set width */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+/*Media elements are block-level and never overflow their container */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* Buttons and inputs don't inherit pointer affordance by default */
+button,
+[role="button"] {
+  cursor: pointer;
+}
+
+/*lists used for UI don't carry list styling, but keep
+      semantics for lists that are actual content (no class = leave alone) */
+ul[class],
+ol[class] {
+  list-style: none;
+  padding: 0;
+}
+
+/* Anchor elements that don't have a class get default styling
+       preserved (so nav links etc. can opt out deliberately) */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+  color: currentColor;
+}
+
+/* Respect users who've turned off animation */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Create a root stacking context so full-bleed layouts behave
+       predictably */
+#root,
+#__next {
+  isolation: isolate;
+}
+
+/* Table defaults */
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+/*MARK: Navigation  */
+.nav-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-s) var(--space-m);
+  color: var(--primary-light-gold);
+}
+
+.nav-logo img {
+  height: clamp(0px, 10vh, 80px);
+}
+
+.nav {
+  display: flex;
+  gap: var(--space-m);
+  color: var(--primary-dark-blue);
+  font-family: var(--primary-font);
+}
+
+.nav a {
+  text-decoration: none;
+  color: var(--primary-dark-blue);
+  font-size: var(--font-size-0);
+  font-weight: 300;
+}
+
+/* MARK: MAIN CSS */
+section{
+  padding-block: var(--space-l);
+}
+
+section:first-of-type {
+  padding-block-end: var(--space-l);
+}
+
+.wrapper, .nav-wrapper {
+  display: flex;
+  width: clamp(0px, 90%, 1240px);
+  margin: 0 auto;
+}
+.wrapper {
+  flex-direction: column;
+}
+
+h1 {
+  font-size: var(--font-size-5);
+  line-height: 1;
+  font-weight: 300;
+}
+
+h2 {
+  font-size: var(--font-size-4);
+  font-weight: 300;
+  color: var(--primary-mid-blue);
+}
+
+h3 {
+  font-size: var(--font-size-3);
+}
+
+h4 {
+  font-size: var(--font-size-2);
+}
+
+p,
+a,
+ul,
+li,
+dl,
+dt,
+dd {
+  font-size: var(--font-size-0);
+  line-height: 1.5;
+  color: var(--primary-dark-blue);
+  margin-block-end: var(--space-s);
+}
+
+.hero-area {
+  position: relative;
+  display: grid;
+  grid-template-areas: "stack";
+  width: 100%;
+  object-fit: cover;
+  overflow: hidden;
+}
+
+.hero-img,
+.hero-text {
+  grid-area: stack;
+}
+
+
+.hero-img {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-img img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--space-m);
+  corner-shape: squircle;
+}
+
+.hero-img:after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--primary-dark-blue);
+  opacity: 0.3;
+  z-index: 10;
+  border-radius: var(--space-m);
+  corner-shape: squircle;
+}
+
+
+.hero-text {
+  z-index: 100; 
+  align-self: end; 
+  justify-self: flex-start; 
+  padding: var(--space-m);
+  color: white;
+  max-width: 60%;
+}
+
+#hero{
+  margin-block: var(--space-m);
+}
+
+.editorial{
+    columns: 3 20ch
+}
+
+.two-col-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(35ch, 1fr));
+  gap: var(--space-m);
+}
+
+.card-flex{
+  display: flex; 
+  flex-wrap: wrap;
+  gap: var(--space-m);
+  margin-block: var(--space-m);
+  justify-content: space-around;
+}
+
+.card{
+  display: flex;
+  flex-direction: column;
+  width: clamp(20ch, 30%, 100%);;
+  outline: 1px solid var(--primary-mid-gold);
+  border-radius: var(--space-3xs);
+}
+
+.card-image img{
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: var(--space-3xs) var(--space-3xs) 0 0;
+}
+
+.card-content{
+  background-color: var(--primary-dark-blue);
+  padding: var(--space-2xs);
+  border-radius: 0 0 var(--space-3xs) var(--space-3xs);
+}
+
+.card-name{
+  font-size: var(--font-size-0);
+  font-weight: 600;
+  color: var(--primary-mid-gold);
+}
+
+.card-content p{
+  color: var(--primary-light-gold);
+}
+
+
+/* MARK: buttons */
+
+.btn-clear {
+  align-items: center;
+  background-color: transparent;
+  border: 1px solid var(--primary-mid-gold);
+  border-radius: var(--space-3xs);
+  box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+  box-sizing: border-box;
+  color: white;
+  cursor: pointer;
+  display: inline-flex;
+  font-size: var(--font-size--1);
+  font-weight: 600;
+  justify-content: center;
+  line-height: 1.25;
+  margin: 0;
+  min-height: 3rem;
+  padding: var(--space-xs) var(--space-s);
+  position: relative;
+  text-decoration: none;
+  transition: all 250ms;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: baseline;
+  width: auto;
+}
+
+.btn-clear:hover,
+.btn-clear:focus {
+  background-color: var(--primary-light-gold);
+  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+  color: var(--primary-dark-blue);
+  font-weight: 700;
+}
+
+.btn-clear:hover {
+  transform: translateY(-1px);
+}
+
+.btn-clear:active {
+  background-color: var(--primary-light-gold);
+  box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
+  color: var(--primary-dark-blue);
+  transform: translateY(0);
+}
+
+/* MARK: utilities */
+.light-gold-background {
+  background: var(--primary-light-gold);
+}
+
+.wave-pattern{
+  position: relative;
+}
+
+
+.wave-pattern::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 12.5%;
+  width: 50%;
+  height: 100%;               /* needs a height since background-image has no intrinsic box */
+  background-image: url(/images/Breakwater-gallery-swish.png);
+  background-repeat: no-repeat;
+  background-size: contain;   /* or "cover" if you want it to fill/crop instead */
+  z-index: -10;
+  opacity: 0.3;
+  rotate: -25%;
+}
+
+.widescreen{
+  aspect-ratio: 16/9;
+}
