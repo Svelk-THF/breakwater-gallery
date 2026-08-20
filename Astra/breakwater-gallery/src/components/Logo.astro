@@ -1,0 +1,64 @@
+---
+// src/components/Logo.astro
+// Renders every image in src/content/logos as a responsive logo grid.
+
+import { Image } from "astro:assets";
+
+const logoFiles = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/content/logos/*.{jpeg,jpg,png,svg,webp}",
+  { eager: true }
+);
+
+const logos = Object.entries(logoFiles).map(([path, file]) => {
+  const filename = path.split("/").pop()?.replace(/\.[^/.]+$/, "") ?? "logo";
+  // Derives alt text from the filename, e.g. "port-taranaki.svg" -> "Port Taranaki"
+  // Rename files to match how you want each name to read, or swap this for a
+  // content collection later if you need custom alt text / sponsor links per logo.
+  const alt = filename.replace(/[-_]/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
+
+  return { src: file.default, alt };
+});
+---
+
+<section class="supporter-logos" aria-labelledby="supporters-heading">
+  <div class="wrapper">
+    <h2 id="supporters-heading">Our supporters</h2>
+
+    <ul class="logo-grid">
+      {
+        logos.map((logo) => (
+          <li class="logo-grid__item">
+            <Image src={logo.src} alt={logo.alt} class="logo-grid__img" />
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .logo-grid {
+    list-style: none;
+    margin: 2.5rem 0 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    align-items: center;
+  }
+
+  .logo-grid__item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .logo-grid__img {
+    max-height: 50px;
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+  }
+
+  
+</style>

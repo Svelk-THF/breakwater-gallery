@@ -1,0 +1,22 @@
+---
+// src/components/ArtistCard.astro
+import { Image } from "astro:assets";
+import type { CollectionEntry } from "astro:content";
+ 
+interface Props {
+  artist: CollectionEntry<"artists">;
+}
+ 
+const { artist } = Astro.props;
+const { name, photo, excerpt } = artist.data;
+---
+ 
+<a class="artist-card" href={`/artists/${artist.id}`}>
+  <Image src={photo} alt={name} width={400} height={400} class="artist-card__photo" />
+  <div class="artist-card__caption">
+    <p class="artist-card__name">{name}</p>
+    <p class="artist-card__excerpt">{excerpt}</p>
+    <div class="btn-clear">View Profile</div>
+  </div>
+</a>
+ 

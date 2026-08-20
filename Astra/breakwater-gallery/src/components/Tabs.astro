@@ -1,0 +1,194 @@
+---
+// src/components/Tabs.astro
+// A simple accessible tab group — "For supporters" / "For artists".
+// Content is placeholder for now; swap the two <div class="tabs__panel">
+// blocks for real content later, no structural changes needed.
+---
+
+<div class="tabs">
+  <div class="tabs__list" role="tablist" aria-label="About the gallery">
+    <button
+      class="tabs__tab is-active"
+      id="tab-supporters"
+      role="tab"
+      type="button"
+      aria-selected="true"
+      aria-controls="panel-supporters"
+    >
+      For supporters
+    </button>
+    <button
+      class="tabs__tab"
+      id="tab-artists"
+      role="tab"
+      type="button"
+      aria-selected="false"
+      aria-controls="panel-artists"
+      tabindex="-1"
+    >
+      For artists
+    </button>
+  </div>
+
+  <div
+    class="tabs__panel"
+    id="panel-supporters"
+    role="tabpanel"
+    aria-labelledby="tab-supporters"
+  >
+    <div class="two-col-grid">
+      <div class="grid-content">
+        <h3>Sponsor a block</h3>
+        <p>
+          Sponsoring a block costs $2,500. Of that, $1,500 goes directly to the
+          artist commissioned to create the work, and $1,000 is donated to the
+          Taranaki Health Foundation for local healthcare projects. A discounted
+          rate is available for sponsors purchasing five or more blocks — [get
+          in touch] for pricing.
+        </p>
+        <img src="/src/images/breakwater.jpg" alt="" class="pd-bl-med" />
+        <p>
+          As a sponsor, you'll be able to choose which artist you'd like to work
+          with from those registered with the Gallery. You won't have final say
+          over the artwork itself — that creative control stays with the artist
+          — but every piece goes through an approval process to make sure it's
+          consistent with the Gallery's policies before it goes up. This keeps
+          the Gallery a space where artists can create freely, and sponsors can
+          be confident every finished piece belongs on the breakwater.
+        </p>
+        <p>Interested in sponsoring a block? Contact us to get started</p>
+      </div>
+      <div class="grid-content">
+        <script
+          type="text/javascript"
+          src="https://form-aus.keela.co/js/iframeResizer.min.js"
+          onload="iFrameResize({checkOrigin: false, heightCalculationMethod: 'taggedElement'}, '#keela_sS7XRLR38Xx7jpLKM')"
+          async></script><iframe
+          id="keela_sS7XRLR38Xx7jpLKM"
+          style="width: 100%; min-height: 500px;"
+          frameborder="0"
+          src="https://form-aus.keela.co/embed/gallery-donor-expression-of-interest"
+        ></iframe>
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="tabs__panel"
+    id="panel-artists"
+    role="tabpanel"
+    aria-labelledby="tab-artists"
+    hidden
+  >
+    <div class="two-col-grid">
+      <div class="placeholder">For artists content goes here.</div>
+      <script
+        type="text/javascript"
+        src="https://form-aus.keela.co/js/iframeResizer.min.js"
+        onload="iFrameResize({checkOrigin: false, heightCalculationMethod: 'taggedElement'}, '#keela_LTHhRcN9rQRjMA9ZF')"
+        async></script><iframe
+        id="keela_LTHhRcN9rQRjMA9ZF"
+        style="width: 100%; min-height: 500px;"
+        frameborder="0"
+        src="https://form-aus.keela.co/embed/artist-expression-of-interest"
+      ></iframe>
+    </div>
+  </div>
+</div>
+
+<style>
+  .tabs__list {
+    display: flex;
+    gap: 2rem;
+    border-bottom: 1px solid #e5e0d5;
+  }
+
+  .tabs__tab {
+    background: var(--primary-light-gold);
+    border: none;
+    cursor: pointer;
+    padding: var(--space-xs) 0;
+    font-family: var(--primary-font);
+    font-size: var(--font-size-1);
+    font-weight: 300;
+    color: var(--primary-dark-blue);
+    opacity: 0.3;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    width: 50%;
+    transition:
+      opacity 0.15s ease,
+      border-color 0.15s ease,
+      color 0.15s ease;
+  }
+
+  .tabs__tab:hover,
+  .tabs__tab:focus-visible {
+    opacity: 0.8;
+    outline: 1px solid var(--primary-mid-gold);
+  }
+
+  .tabs__tab.is-active {
+    opacity: 1;
+    color: var(--primary-dark-blue);
+    border-bottom-color: var(--primary-mid-blue);
+  }
+
+  .tabs__panel {
+    padding-block: 2rem;
+  }
+
+  .placeholder {
+    background: #f0e9d7;
+    border: 1px dashed #c1ac8f;
+    border-radius: 4px;
+    padding: 3rem 1.5rem;
+    text-align: center;
+    color: #1f2934;
+    opacity: 0.6;
+  }
+</style>
+
+<script>
+  // Scoped per .tabs instance, so multiple tab groups on one page won't clash.
+  document.querySelectorAll<HTMLElement>(".tabs").forEach((tabsEl) => {
+    const tabs = Array.from(
+      tabsEl.querySelectorAll<HTMLButtonElement>(".tabs__tab"),
+    );
+
+    tabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        const panelId = tab.getAttribute("aria-controls");
+        if (!panelId) return;
+        const panel = tabsEl.querySelector<HTMLElement>(`#${panelId}`);
+        if (!panel) return;
+
+        tabs.forEach((t) => {
+          const active = t === tab;
+          t.classList.toggle("is-active", active);
+          t.setAttribute("aria-selected", String(active));
+          t.tabIndex = active ? 0 : -1;
+
+          const otherPanel = tabsEl.querySelector<HTMLElement>(
+            `#${t.getAttribute("aria-controls")}`,
+          );
+          if (otherPanel) otherPanel.hidden = !active;
+        });
+      });
+
+      // Left/right arrow keys move focus between tabs, per the ARIA tabs pattern.
+      tab.addEventListener("keydown", (e) => {
+        const index = tabs.indexOf(tab);
+        if (e.key === "ArrowRight") {
+          e.preventDefault();
+          tabs[(index + 1) % tabs.length].focus();
+          tabs[(index + 1) % tabs.length].click();
+        } else if (e.key === "ArrowLeft") {
+          e.preventDefault();
+          tabs[(index - 1 + tabs.length) % tabs.length].focus();
+          tabs[(index - 1 + tabs.length) % tabs.length].click();
+        }
+      });
+    });
+  });
+</script>

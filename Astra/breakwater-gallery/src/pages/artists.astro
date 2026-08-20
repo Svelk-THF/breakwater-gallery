@@ -1,0 +1,14 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import MeetTheArtists from "../components/MeetTheArtists.astro";
+
+const { title } = Astro.props;
+---
+
+<BaseLayout title="The artists">
+  <div class="light-gold-background">
+    <div class="wrapper">
+      <MeetTheArtists />
+    </div>
+  </div>
+</BaseLayout>

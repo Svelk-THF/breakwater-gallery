@@ -1,0 +1,70 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Tabs from "../components/Tabs.astro";
+
+const { title } = Astro.props;
+---
+
+<BaseLayout title={"About the gallery"}>
+  <section class="header-image">
+    <div class="wrapper">
+      <h1>About the gallery</h1>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrapper">
+      <div class="two-col-grid">
+        <p class="grid-content">
+          The Breakwater Gallery will be an outdoor art space at Port Taranaki,
+          created by the people of Taranaki to highlight the extraordinary
+          talent found in the region. This is a place where local creativity
+          gets the stage it deserves. Where the work of our painters and
+          muralists can be seen, felt, and celebrated by everyone who walks the
+          breakwater.
+        </p>
+        
+
+        <p class="grid-content">
+          The vision is simple: to showcase and support local artists, and to
+          give both locals and visitors a destination. Somewhere to slow down,
+          look closely, and see Taranaki through the eyes of the people who
+          create here. As the Gallery grows, it becomes more than a collection
+          of artwork. It will become a landmark. An asset for the region,
+          drawing people to our corner of Aotearoa, giving our creative
+          community a platform to showcase talents, and adding something lasting
+          to Taranaki's identity.
+        </p>
+      </div>
+      <div class="decorative-swish">
+        <img
+          src="/src/images/Breakwater-Gallery-pattern.svg"
+          alt=""
+          aria-hidden="true"
+        />
+      </div>
+    </div>
+    <section>
+      <div class="wrapper">
+        <h2>Be a part of the gallery</h2>
+        <Tabs />
+      </div>
+    </section>
+  </section>
+
+  <style>
+    .header-image {
+      background-image: url("/src/images/Rectangle\ 239.jpg");
+      background-size: cover;
+      background-position: center;
+      height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: left;
+    }
+
+    h1 {
+      color: white;
+    }
+  </style>
+</BaseLayout>
