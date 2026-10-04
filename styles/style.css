@@ -283,6 +283,13 @@ h2{
   line-height: 1.2;
 }
 
+h3{
+  font-size: var(--font-size-3);
+  font-family: var(--primary-font);
+  font-weight: 200;
+  color: var(--primary-dark-blue);
+}
+
 .hero-grid img{
   width: clamp(0px, 100%, 600px);
   height: auto;
