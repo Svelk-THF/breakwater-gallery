@@ -204,6 +204,8 @@ h3 {
 
 h4 {
   font-size: var(--font-size-2);
+  font-weight: 500;
+  color: var(--primary-mid-blue);
 }
 
 p,
@@ -232,6 +234,17 @@ dd {
 
 .widescreen{
   aspect-ratio: 16/9;
+}
+
+.img-full-height{
+  height: 120%;
+  object-fit: cover;
+  align-self: center;
+}
+
+.img-full-height img{
+  height: 100%;
+  object-fit: cover;
 }
 
 /* MARK: Artists card */
@@ -378,7 +391,7 @@ dd {
 
 /* MARK: utilities */
 .light-gold-background {
-  background: var(--primary-light-gold);
+  background-image: linear-gradient(180deg, rgba(0,0,0,0) 5%, var(--primary-light-gold) 5%, var(--primary-light-gold) 95%, rgba(0,0,0,0) 95%);
 }
 
 .wave-pattern{
@@ -403,6 +416,10 @@ dd {
 
 .pd-bl-med{
   padding-block: var(--space-m);
+}
+
+.pd-inline-med{
+  padding-inline: var(--space-m);
 }
 
 .decorative-swish{

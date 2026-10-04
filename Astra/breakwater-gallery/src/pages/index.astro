@@ -10,15 +10,20 @@ const { title } = Astro.props;
   <section aria-labelledby="hero" class="hero-section">
     <div class="wrapper">
       <div class="hero-area">
-        <div class="hero-img">
-          <img src="/src/images/breakwater.jpg" alt="The Breakwater Gallery" />
-        </div>
-        <div class="hero-text">
+        <div class="grid-content">
           <h1 id="hero">
             A new destination for
-            <span style="font-weight: 600"> local artwork</span> in Taranaki.
+            <span style="font-weight: 600; color: var(--primary-mid-blue);">
+              local artwork</span
+            > in Taranaki.
           </h1>
           <a href="#" class="btn-solid">About the gallery</a>
+        </div>
+        <div class="hero-img">
+          <img
+            src="/src/images/hero-image.png"
+            alt="The Breakwater Gallery exterior"
+          />
         </div>
       </div>
     </div>
@@ -26,128 +31,83 @@ const { title } = Astro.props;
 
   <section class="light-gold-background" aria-labelledby="intro">
     <div class="wrapper">
-      <h2 id="intro">Introducing the gallery</h2>
-      <div class="editorial">
-        <p>
-          The Breakwater Gallery will be an outdoor art space at Port Taranaki,
-          created by the people of Taranaki to highlight the extraordinary
-          talent found in the region. This is a place where local creativity
-          gets the stage it deserves. Where the work of our painters and
-          muralists can be seen, felt, and celebrated by everyone who walks the
-          breakwater.
-        </p>
-        <p>
-          The vision is simple: to showcase and support local artists, and to
-          give both locals and visitors a destination. Somewhere to slow down,
-          look closely, and see Taranaki through the eyes of the people who
-          create here. As the Gallery grows, it becomes more than a collection
-          of artwork. It will become a landmark. An asset for the region,
-          drawing people to our corner of Aotearoa, giving our creative
-          community a platform to showcase talents, and adding something lasting
-          to Taranaki's identity.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <section aria-labelledby="explain" class="wave-pattern">
-    <div class="wrapper">
-      <h2 id="explain">Be involved in something special</h2>
       <div class="two-col-grid">
         <div class="grid-content">
-        <p class="grid-content">
-          The Breakwater Gallery is funded entirely by the people of Taranaki.
-          Local businesses, community groups, and individuals who understand the
-          real, positive impact that creativity has on a region donate to enable
-          our artists to create this space.
+        <h2 id="intro">Introducing the gallery</h2>
+        <p>
+          The Breakwater Gallery is a new and exciting space for Taranaki.
+          Situated on the Lee Breakwater at Port Taranaki, the gallery will
+          showcase the region’s best outdoor artists, as well as being an
+          opportunity for up-and-coming artists to show display their talent.
+          The gallery will turn the grey and industrial area into a vibrant
+          walkway that tells the story of our creative community, while also
+          fundraising for local healthcare services.
         </p>
-        <p class="grid-content">
-          We are looking for businesses who want to support this exciting project and support local creativity
-        </p>
-        <a href="#" class="btn-solid">Get involved</a>
         </div>
-        <img
-          src="/src//images/breakwater.jpg"
-          alt="The Breakwater Gallery exterior"
-          class="widescreen"
-        />
+        <div class="grid-img img-full-height">
+          <img src="/src/images/Breawater-logo-mockup.jpeg" alt="Breakwater gallery logo on a bollard" />
+        </div>
       </div>
     </div>
   </section>
 
-  <MeetTheArtists />
-  <Logo />
+    <section aria-labelledby="explain" class="wave-pattern">
+      <div class="wrapper">
+        <h2 id="explain">Be involved in something special</h2>
+        <div class="two-col-grid">
+          <div class="grid-content">
+            <p class="grid-content">
+              The Breakwater Gallery is funded entirely by the people of
+              Taranaki. Local businesses, community groups, and individuals who
+              understand the real, positive impact that creativity has on a
+              region donate to enable our artists to create this space.
+            </p>
+            <p class="grid-content">
+              We are looking for businesses who want to support this exciting
+              project and support local creativity
+            </p>
+            <a href="#" class="btn-solid">Get involved</a>
+          </div>
+          <img
+            src="/src//images/breakwater.jpg"
+            alt="The Breakwater Gallery exterior"
+            class="widescreen"
+          />
+        </div>
+      </div>
+    </section>
+
+    <section>
+    <MeetTheArtists />
+    <Logo />
+  </section>
+
+  <style>
+    .hero-section {
+      position: relative;
+    }
+
+    .hero-area {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+
+    .hero-img img {
+      width: 125%;
+    }
+
+    .hero-text {
+      z-index: 100;
+      align-self: start;
+      justify-self: flex-start;
+      padding: var(--space-m);
+      color: white;
+      max-width: 60%;
+    }
+
+    #hero {
+      margin-block: var(--space-m);
+    }
+  </style>
 </BaseLayout>
-
-<style>
-  .hero-section {
-    position: relative;
-  }
-
-  .hero-section::before {
-    content: url("/src/images/Breakwater-Gallery-pattern.svg");
-    position: absolute;
-    bottom: 20%;
-    width: 100%;
-    height: 50%;
-    object-fit: cover;
-    opacity: 0.3;
-    z-index: -10;
-  }
-
-  .hero-area {
-    position: relative;
-    display: grid;
-    grid-template-areas: "stack";
-    width: 100%;
-    object-fit: cover;
-    overflow: hidden;
-  }
-
-  .hero-img,
-  .hero-text {
-    grid-area: stack;
-  }
-
-  .hero-img {
-    position: relative;
-    z-index: 1;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  .hero-img img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: var(--space-m);
-    corner-shape: squircle;
-  }
-
-  .hero-img:after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    background: var(--primary-dark-blue);
-    opacity: 0.3;
-    z-index: 10;
-    border-radius: var(--space-m);
-    corner-shape: squircle;
-  }
-
-  .hero-text {
-    z-index: 100;
-    align-self: start;
-    justify-self: flex-start;
-    padding: var(--space-m);
-    color: white;
-    max-width: 60%;
-  }
-
-  #hero {
-    margin-block: var(--space-m);
-  }
-</style>
