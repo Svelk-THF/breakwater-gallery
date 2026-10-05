@@ -267,6 +267,24 @@ background-image: linear-gradient(to bottom, var(--primary-mid-blue), var(--prim
   text-underline-offset: 1em;
 }
 
+.half-image-section{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  grid-template-rows: 50%;
+  align-items: center;
+  justify-content: center;
+}
+
+.image-height{
+  height: 100%;
+}
+
+.image-height img{
+  height: 100vh;
+  width: 100%;
+  object-fit: cover;
+}
+
 h1{
   font-size: var(--font-size-5);
   font-family: var(--primary-font);
@@ -291,11 +309,7 @@ h3{
   color: var(--primary-dark-blue);
 }
 
-.hero-grid img{
-  width: clamp(0px, 90%, 600px);
-  height: auto;
-  margin-inline: auto;
-}
+
 
 .two-col-grid{
   display: grid;
