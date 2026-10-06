@@ -70,7 +70,7 @@ html {
   font-family: var(--primary-font);
   font-weight: 300;
   color: var(--primary-dark-blue);
-   scroll-snap-type: y mandatory;
+   /* scroll-snap-type: y mandatory; */
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -374,6 +374,28 @@ footer{
 
 .med-height{
   height: clamp(0px, 3lh, 100svh);
+}
+
+/* Animations */
+@keyframes grow-in {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .two-col-grid {
+      animation: grow-in linear both;
+      animation-timeline: view();
+      animation-range: entry 10% cover 40%;
+    }
+  }
 }
 
 @media (max-width: 540px){
