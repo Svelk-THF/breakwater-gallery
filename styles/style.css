@@ -49,7 +49,6 @@
 
 /*MARK: CSS RESET */
 
-
 /* Use a sensible box model everywhere */
 *,
 *::before,
@@ -85,6 +84,7 @@ h3,
 h4 {
   text-wrap: balance;
   margin-block: var(--space-s);
+  line-height: 1.1;
 }
 
 p{
@@ -451,6 +451,16 @@ footer{
   height: clamp(0px, 3lh, 100svh);
 }
 
+.bold-text{
+  font-weight: 600;
+}
+
+.bold-gold{
+  font-weight: 600;
+  color: var(--primary-mid-gold);
+  padding-block: none;
+}
+
 .larger-body{
   font-size: var(--font-size-1);
   color: white;
@@ -464,9 +474,35 @@ footer{
   background: var(--primary-mid-blue);
 }
 
+.white-background{
+  background-color: white;;
+}
+
 .pd-bl-xs{
   padding-block: var(--space-xs);
 }
+
+.image-breaker{
+  display: block;
+  min-height: 0;
+  height: clamp(200px, 40vh, 600px); 
+  ;
+object-fit: cover;
+}
+
+.top-align{
+  align-items: start;;
+}
+.image-breaker img{
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.width-55ch{
+  max-width: 55ch;
+}
+
 /* Animations */
 @keyframes grow-in {
   from {
