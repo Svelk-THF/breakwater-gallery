@@ -120,6 +120,10 @@ h6 {
   overflow-wrap: break-word;
 }
 
+a{
+  text-decoration: none;
+}
+
 /*Media elements are block-level and never overflow their container */
 img,
 picture,
@@ -265,6 +269,7 @@ background-image: linear-gradient(to bottom, var(--primary-mid-blue), var(--prim
   letter-spacing: 0.5em;
   text-decoration: underline;
   text-underline-offset: 1em;
+  text-transform: uppercase;
 }
 
 .half-image-section{
@@ -344,6 +349,76 @@ h3{
    grid-column: 1 / -1;
 }
 
+.highlight-list{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: left;
+  gap: var(--space-m);
+}
+
+.highlight{
+  font-size: var(--font-size-1);
+  font-family: var(--primary-font);
+  font-weight: 500;
+  color: var(--primary-mid-blue);
+  text-align: center;
+  background-color: white;
+  width: 100%;
+  padding-block: var(--space-s);
+  border-radius: var(--space-l);
+}
+
+/* Button */
+.button {
+  display: inline-block;
+  padding: 0.75rem 1.25rem;
+  margin-block: var(--space-s);
+  border-radius: 10rem;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 1rem;
+  letter-spacing: 0.15rem;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+.button:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--primary-mid-gold);
+  border-radius: 10rem;
+  z-index: -2;
+}
+.button:before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  background-color: var(--primary-mid-blue);
+  transition: all 0.3s;
+  border-radius: 10rem;
+  z-index: -1;
+}
+.button:hover {
+  color: #fff;
+}
+.button:hover:before {
+  width: 100%;
+}
+
+.button:focus-visible{
+  outline: 1px solid var(--primary-mid-gold);
+  outline-offset: 4px;
+}
+
 /* Footer */
 footer{
   background-color: white;
@@ -376,6 +451,22 @@ footer{
   height: clamp(0px, 3lh, 100svh);
 }
 
+.larger-body{
+  font-size: var(--font-size-1);
+  color: white;
+  font-family: var(--primary-font);
+  font-weight: 500;
+  max-width: 55ch;
+  text-wrap: pretty;
+}
+
+ .mid-blue-background{
+  background: var(--primary-mid-blue);
+}
+
+.pd-bl-xs{
+  padding-block: var(--space-xs);
+}
 /* Animations */
 @keyframes grow-in {
   from {
