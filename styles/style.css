@@ -90,6 +90,8 @@ h4 {
 p{
   font-family: var(--primary-font);
   font-size: var(--font-size-0);
+  line-height: 1.6;
+padding-block: var(--space-2xs);
 }
 
 /* Core body defaults */
@@ -210,8 +212,7 @@ table {
 /* MARK: MAIN CSS */
 
 section{
-  min-height: 100vh;
-  min-height: 100svh;
+ padding-block: var(--space-3xl);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -228,19 +229,20 @@ section, footer, .half-section{scroll-snap-align: start;
   background: linear-gradient(to top, var(--primary-light-gold), white);
   }
 
-section:nth-of-type(odd){
+/* section:nth-of-type(odd){
   background-color: var(--primary-light-gold);
   background: linear-gradient(to bottom, var(--primary-light-gold), white);
 }
 section:nth-of-type(even){
   background-color: var(--primary-dark-blue);
-}
+} */
 
-.hero-area{
+/* .hero-area{
 height: 100vh;
 height: 100svh;
-background-image: linear-gradient(to bottom, var(--primary-mid-blue), var(--primary-dark-blue));
-}
+} */
+
+
 
 .hero-wrapper{
  width: clamp(0px, 95vw, 1920px);
@@ -255,10 +257,10 @@ background-image: linear-gradient(to bottom, var(--primary-mid-blue), var(--prim
 .hero-grid{
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-  height: 100vh;
   align-items: center;
   justify-content: center;
   gap: var(--space-m);
+  margin-block: var(--space-3xl);
 }
 
 .coordinates{
@@ -344,7 +346,7 @@ h3{
 
 .narrow{
   width: 100%;
-   height: clamp(0px, 40vh, 360px );
+   /* height: clamp(0px, 40vh, 360px ); */
    object-fit: cover;
    grid-column: 1 / -1;
 }
@@ -367,6 +369,11 @@ h3{
   width: 100%;
   padding-block: var(--space-s);
   border-radius: var(--space-l);
+  transition: scale 0.33s ease-in-out;
+}
+
+.highlight:hover{
+  scale: 1.02;
 }
 
 /* Button */
@@ -438,8 +445,16 @@ footer{
 }
 
 /* Utilities */
+
+.dark-blue-gradient{
+  background-image: linear-gradient(to bottom, var(--primary-mid-blue), var(--primary-dark-blue));
+}
+
+.light-gold-gradient{
+  background: linear-gradient(to bottom, var(--primary-light-gold), white);
+}
 .rounded-corners{
-  border-radius: var(--space-l);
+  border-radius: var(--space-s);
 }
 
 .light-text{
@@ -473,9 +488,16 @@ footer{
  .mid-blue-background{
   background: var(--primary-mid-blue);
 }
+ .dark-blue-background{
+  background: var(--primary-dark-blue);
+}
 
 .white-background{
   background-color: white;;
+}
+
+.white-text{
+  color: white;
 }
 
 .pd-bl-xs{
@@ -488,6 +510,7 @@ footer{
   height: clamp(200px, 40vh, 600px); 
   ;
 object-fit: cover;
+padding-block: 0;
 }
 
 .top-align{
@@ -497,6 +520,7 @@ object-fit: cover;
   height: 100%;
   width: 100%;
   object-fit: cover;
+  
 }
 
 .width-55ch{
