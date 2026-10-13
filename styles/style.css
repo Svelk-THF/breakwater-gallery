@@ -183,14 +183,24 @@ table {
 }
 
 /*MARK: Navigation  */
-/* .nav-wrapper {
+
+.site-nav{
+
+ background-color: var(--primary-light-gold);
+}
+.nav-wrapper {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: var(--space-s) var(--space-m);
+  padding-block: var(--space-s);
   color: var(--primary-light-gold);
+ width: clamp(0px, 95vw, 1920px);
+ margin-inline: auto;
+ position: sticky;
+ top: 0;
+ height: 100px;
 }
-
+/*
 .nav-logo img {
   height: clamp(0px, 10vh, 80px);
 }
@@ -552,5 +562,6 @@ padding-block: 0;
 @media (max-width: 540px){
   .hero-grid, .two-col-grid{
     grid-template-columns: 1fr;
+    align-items: start;;
   }
 }
