@@ -146,7 +146,7 @@ button,
       semantics for lists that are actual content (no class = leave alone) */
 ul[class],
 ol[class] {
-  list-style: none;
+  /* list-style: none; */
   padding: 0;
 }
 
@@ -536,6 +536,8 @@ padding-block: 0;
 .width-55ch{
   max-width: 55ch;
 }
+
+
 
 /* Animations */
 @keyframes grow-in {
